@@ -39,7 +39,7 @@ public class EnemyDamage : MonoBehaviour
             health -= damage * 100;
         }
         //If health drops to/below 0, enemy is removed
-        if(health -= 0)
+        if(health <= 0)
         {
             Destroy(gameObject);
         }
