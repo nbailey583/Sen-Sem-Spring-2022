@@ -9,7 +9,19 @@ public class EnemyDamage : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //if(floor(currentScore/1000) > 0) increase enemyhealth += 10*currentScore/1000;
+        if (gameObject.tag == "Brute")
+        {
+            health *= 2;
+        }
+        if(gameObject.tag == "MeleeEnemy")
+        {
+
+        }
+        if(gameObject.tag == "RangedEnemy")
+        {
+            health *= .75;
+        }
     }
 
     // Update is called once per frame
@@ -24,11 +36,17 @@ public class EnemyDamage : MonoBehaviour
     //Collision check for what damage modifier to use
     void OnCollisionEnter(Collision collision)
     {
-        int damage = 1;//This should be rewritten to pull from the bullet object itsself if/when implemented
+        //int damage = 1;//This should be rewritten to pull from the bullet object itself if/when implemented
+        gameObject collidedWith = collision.gameObject;
 
-        if(collision.gameObject.tag == "BulletPistol")//Medium damage
+        if(collidedWith.layer == 10)
         {
-            health -= damage * 50;
+            health -= gameObject.damage;
+        }
+
+        /*if(collision.gameObject. == "")//Medium damage
+        {
+            health -= gameObject.damage * 50;
         }
         if(collision.gameObject.tag == "SmgBullet")//Small damage
         {
@@ -37,7 +55,8 @@ public class EnemyDamage : MonoBehaviour
         if(collision.gameObject.tag == "RifleBullet")//Full damage
         {
             health -= damage * 100;
-        }
+        }*/
+
         //If health drops to/below 0, enemy is removed
         if(health <= 0)
         {
